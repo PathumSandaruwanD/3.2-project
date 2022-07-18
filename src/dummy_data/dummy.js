@@ -474,7 +474,7 @@ export const links = [
     title: 'Dashboard',
     links: [
       {
-        name: 'ecommerce',
+        name: 'Online Store',
         icon: <FiShoppingBag />,
       },
     ],
@@ -484,15 +484,15 @@ export const links = [
     title: 'Pages',
     links: [
       {
-        name: 'orders',
+        name: 'Orders',
         icon: <AiOutlineShoppingCart />,
       },
       {
-        name: 'employees',
+        name: 'Employees',
         icon: <IoMdContacts />,
       },
       {
-        name: 'customers',
+        name: 'Customers',
         icon: <RiContactsLine />,
       },
     ],
@@ -501,19 +501,19 @@ export const links = [
     title: 'Apps',
     links: [
       {
-        name: 'calendar',
+        name: 'Calendar',
         icon: <AiOutlineCalendar />,
       },
       {
-        name: 'kanban',
+        name: 'Kanban',
         icon: <BsKanban />,
       },
       {
-        name: 'editor',
+        name: 'Editor',
         icon: <FiEdit />,
       },
       {
-        name: 'color-picker',
+        name: 'Color-picker',
         icon: <BiColorFill />,
       },
     ],
