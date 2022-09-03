@@ -10,8 +10,14 @@ export {default as Notification} from './Notification';
 export {default as Profile} from './Profile';
 export {default as Sidebar} from './Sidebar';
 export {default as ThemeSettings} from './ThemeSettings';
+export {default as AddProduct} from './AddProduct';
+export {default as SalesGrid} from './SalesGrid';
+export {default as DailySales} from './DailySales';
+export {default as LastTransactions} from './LastTransactions';
+export {default as EditProduct} from './EditProduct';
 //charts
 export {default as LineChart} from './LineChart';
-export {default as PieChart} from './pieChart';
+export {default as Pie} from './pieChart';
 export {default as SparkLine} from './SparkLine';
-export {default as Stacks} from './Stacks';
+export {default as Stacked} from './Stacks';
+export {default as PieChart} from './Pie';

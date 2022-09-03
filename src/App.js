@@ -5,15 +5,17 @@ import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 //Charts of the components file has been removed for temporary
 
-import { Sidebar,Navbar,Footer,ThemeSettings } from './components';
+import { Sidebar,Navbar,Footer,ThemeSettings,AddProduct,SalesGrid,EditProduct } from './components';
 
 //Import pages
-import{Calender,ColorPicker,Ecommrce,Editor,Employees,Inventory,Kanban,Orders,PriceBook,Users,Area,Bar,ColorMapping,FinancialChart,Line,Pie,Pyramid,Stacked}from './pages';
+import{ColorPicker,Calender,Ecommrce,Editor,Employees,Inventory,Kanban,Orders,PriceBook,Users,Area,Bar,ColorMapping,FinancialChart,Line,Pyramid,Stacked, Sales}from './pages';
+
 //import state controllers and context provider
 import { useStateContext } from './context/ContextProvider';
 
 
 import './App.css'
+import Customers from './pages/Customers';
 
 const App = () => {
   const{activeMenu}=useStateContext();
@@ -25,6 +27,7 @@ const App = () => {
       <BrowserRouter>
       {/*sidebar*/}
         <div className='flex relative dark:bg-main-dark-bg'>
+          {/*
           <div className='fixed right-4 bottom-4' style={{zIndex: '1000'}}>
             <TooltipComponent content='Settings' position='Top'>
               <button type='button' className='text-3xl p3 hover:drop-shadow-xl hover:bg-light-gray text-white' style={{background:'blue',borderRadius:'50%'}}>
@@ -32,6 +35,8 @@ const App = () => {
               </button>
             </TooltipComponent>
           </div>
+          
+          */}
           {activeMenu ? (
             <div className='w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white'> 
             <Sidebar />
@@ -53,34 +58,45 @@ const App = () => {
 
             {/*routing*/}
             <div>
+              
               <Routes>
                 {/*Dashboard*/}
                 <Route path='/' element={< Ecommrce/>} />
-                <Route path='/ecommrce' element={< Ecommrce/>} />
+                <Route path='/Online%20Store' element={< Ecommrce/>} />
 
                 {/*Pages*/}
                 <Route path='/orders' element={< Orders/>} />
                 <Route path='/employees' element={< Employees/>} />
-                <Route path='/users' element={< Users/>} />
+                <Route path='/customers' element={< Customers/>} />
+                <Route path='/sales' element={< Sales/>} />
+                
            
                 {/*Apps*/}
-                <Route path='/kanban' element={< Kanban/>} />
+                <Route path='/Calendar' element={< Calender/>}/>
+                <Route path='/Task%20Scheduler' element={< Kanban/>} />
                 <Route path='/editor' element={< Editor/>} />
-                <Route path='/calender' element={< Calender/>} />
                 <Route path='/color-picker' element={< ColorPicker/>} />
+                <Route path='/price%20book' element={< PriceBook/>} />
+                <Route path='/inventory' element={< Inventory/>} />
+            
 
                 {/*Charts*/}
                 <Route path='/line' element={< Line/>} />
                 <Route path='/area' element={< Area/>} />
                 <Route path='/bar' element={< Bar/>} />
-                <Route path='/pie' element={< Pie/>} />
-                <Route path='/financial-chart' element={< FinancialChart/>} />
+                
+                <Route path='/financial' element={< FinancialChart/>} />
                 <Route path='/color-mapping' element={< ColorMapping/>} />
                 <Route path='/pyramid' element={< Pyramid/>} />
                 <Route path='/stacked' element={< Stacked/>} />
+                <Route path='/AddProduct' element={< AddProduct/>} />
+                <Route path='/EditProduct' element={< EditProduct/>} />
+                <Route path='/SalesGrid' element={< SalesGrid/>} />
+                
 
               </Routes>
             </div>
+            <Footer />
           </div>
         </div>
       </BrowserRouter>
