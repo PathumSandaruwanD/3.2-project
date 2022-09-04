@@ -9,16 +9,20 @@ const PriceBook = () => {
     <div className='m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl'>
       <Header category="Page" title="Price Book"/>
       <GridComponent id='pricebookGrid'
-      dataSource={pricebookData}
+      //declare the data source here with remote data binding
       allowPaging
       allowSorting
       toolbar={['Search']}
       editSettings={{allowDeleting:true,allowEditing:true}}
       width="auto">
         <ColumnsDirective>
-          {pricebookGrid.map((item,index)=>(
-            <ColumnDirective key={index} {...item}/>
-          ))}
+          <ColumnDirective type='checkbox' width='50'/>
+          <ColumnDirective field='id' headerText='ID' width='100' textAlign="Center" isPrimaryKey={true} />
+          <ColumnDirective field='Product' headerText='Product ' width='100' textAlign="Center" />
+          <ColumnDirective field='Product Name' headerText='Product Name' width='100' textAlign="Center" />
+          <ColumnDirective field='Unit Price' headerText='Unit Price' width='100' textAlign="Center" />
+          <ColumnDirective field='Supplier' headerText='Supplier' width='50' textAlign="Center" />
+          <ColumnDirective field='Region' headerText='Region' width='100' textAlign="Center" />
         </ColumnsDirective>
         <Inject services={[Page,Toolbar,Selection,Edit,Sort,Filter]}/>
       </GridComponent>
