@@ -1,6 +1,9 @@
 import React from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
-import {Link} from 'react-router-dom';
+import {Link,useNavigate} from 'react-router-dom';
+import {signOut} from 'firebase/auth';
+import {auth} from '../firebase';
+
 
 import { Button } from '.';
 import { userProfileData } from '../dummy_data/dummy';
@@ -8,8 +11,24 @@ import { useStateContext } from '../context/ContextProvider';
 import avatar from '../dummy_data/avatar.jpg'
 
 const Profile = () => {
+  const navigate = useNavigate();
+  
+
+  
 
   const { currentColor } = useStateContext();
+  
+  let handleClick = async () => {
+    try {
+      signOut(auth).then(() => {
+        navigate('/');
+        console.log('signed out');
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
 
   return (
     <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
@@ -32,7 +51,7 @@ const Profile = () => {
       <div>
         <p className="font-semibold text-xl dark:text-gray-200"> Admin One </p>
         <p className="text-gray-500 text-sm dark:text-gray-400">  Administrator   </p>
-        <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"> info@muthhettiwinestores.com </p>
+        <p className="text-gray-500 text-sm font-semibold dark:text-gray-400"></p>
       </div>
     </div>
    {/*
@@ -56,20 +75,8 @@ const Profile = () => {
     </div>
    */}
     <div className="mt-5 flex gap-2">
-      <Button
-        color="white"
-        bgColor="black"
-        text="Logout"
-        borderRadius="10px"
-        width="full"
-      />
-      <Button
-        color="white"
-        bgColor="black"
-        text="Edit"
-        borderRadius="10px"
-        width="full"
-      />
+     <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleClick}>Log Out</button>
+     <Link to="/signin"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Change Password</button></Link>
     </div>
   </div>
   )

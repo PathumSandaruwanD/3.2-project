@@ -28,7 +28,51 @@ const Customers = () => {
     <div className='m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl'>
       <Header category="Page" title="Customers"/>
       
-      <GridComponent id="customersGrid" 
+      <table class="w-full border">
+        <thead>
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border text-center hidden lg:table-cell">
+            <input type="checkbox" />
+          </th>
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border text-center" width="50px">
+            ID
+          </th>
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border text-center" width="100px">
+            Name
+          </th>
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border text-center">
+            Contact
+          </th>
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border text-center">
+            Email
+          </th>
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border text-center">
+            Address
+          </th>
+        </thead>
+        <tbody>
+          {users.map((user) => (
+            <tr class="bg-white border-4 border-gray-200">
+              <td class="p-3 text-gray-600 text-center border">
+                <input type="checkbox" />
+              </td>
+              <td class="p-3 text-gray-600 text-center border">{user.id}</td>
+              <td class="p-3 text-gray-600 text-center border">{user.name}</td>
+              <td class="p-3 text-gray-600 text-center border">{user.contact}</td>
+              <td class="p-3 text-gray-600 text-center border">{user.email}</td>
+              <td class="p-3 text-gray-600 text-center border">{user.address}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+    </div>
+  )
+}
+
+export default Customers
+
+/*
+ <GridComponent id="customersGrid" 
       dataSource={users}
        //declare the data source here with remote data binding
       allowPaging
@@ -40,15 +84,10 @@ const Customers = () => {
           <ColumnDirective type='checkbox' width='50'/>
           <ColumnDirective field='id' headerText='ID' width='100' textAlign="Center" isPrimaryKey={true} />
           <ColumnDirective field='name' headerText='Name' width='100' textAlign="Center"/>
-          {/*<ColumnDirective field='Contact Number' width='100'/>*/}
           <ColumnDirective field='shipping-address' headerText='Address' width='100' format="C2" textAlign="Center"/>
           <ColumnDirective field='email' width='100' headerText='Email' format="C2" textAlign="Center"/>
         </ColumnsDirective>
         <Inject services={[Page,Toolbar,Selection,Edit,Sort,Filter]}/>
       </GridComponent>
 
-    </div>
-  )
-}
-
-export default Customers
+*/

@@ -1,33 +1,98 @@
-import React from 'react';
 import { GridComponent, ColumnsDirective, ColumnDirective, Resize, Sort, ContextMenu, Filter, Page, ExcelExport, PdfExport, Edit, Inject, Toolbar } from '@syncfusion/ej2-react-grids';
-import {Header} from '../components'
+import {Header, OrderStatus} from '../components'
+import {collection,getDocs} from 'firebase/firestore';
+import {db} from '../firebase';
+import React,{useEffect,useState} from 'react';
 
 
 const Orders = () => {
+
+  const [orders,setOrders] = useState([]);
+
+  useEffect(() => {
+    getOrders(); 
+  },[]);
+
+  function getOrders(){
+    const ordersRef = collection(db, 'orders');
+    getDocs(ordersRef).then(Response => {
+      const data = Response.docs.map(doc => doc.data());
+      setOrders(data);
+    }).catch(error => {
+      console.log(error.message);
+    })
+  }
+
   return (
     <div className='m-2 md:m-10 p-2 md:p-10 bg-white rounded-3xl'>
       <Header category="Page" title="Orders"/>
       {/* create grid component and the make column directive for data showing*/}
-      <GridComponent id="orderGrid" 
-      //declare the data source here with remote data binding
-      allowPaging
-      allowSorting
-      toolbar={['Search']}
-      width="auto">
-        <ColumnsDirective>
-        <ColumnDirective type='checkbox' width='50'/>
-        <ColumnDirective field='id' headerText='Order Id' width='100' textAlign="Center" isPrimaryKey={true} />   
-        <ColumnDirective field="Product" headerText="Product" width="100" textAlign="Center" />"      
-        <ColumnDirective field='Product Name' headerText='Product Name' width='100' textAlign="Center" />
-        <ColumnDirective field='Unit Price' headerText='Unit Price' width='100' textAlign="Center" />
-        <ColumnDirective field='Quantity' headerText='Qty' width='50' textAlign="Center" />
-        <ColumnDirective field='Total Price' headerText='Total Price' width='100' textAlign="Center" />
-        <ColumnDirective field='Order Date' headerText='Order Date' width='100' textAlign="Center" />
-        <ColumnDirective field='Customer' headerText='Customer' width='100' textAlign="Center" />
-        <ColumnDirective field='Status' headerText='Status' width='100' textAlign="Center" />
-        </ColumnsDirective>
-        <Inject services={[Resize,Sort,ContextMenu,Filter,Page,ExcelExport,PdfExport,Edit,Toolbar]}/>
-      </GridComponent>
+      <table class="w-full border">
+        <thead>
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border text-center hidden lg:table-cell">
+            <input type="checkbox" />
+          </th>
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border text-center">
+            ID
+          </th>
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border text-center">
+            Product
+          </th>
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border text-center">
+            Product Name
+          </th>
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border text-center">
+            Customer
+          </th>
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border text-center">
+            Quantity
+          </th>
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border text-center">
+            Price
+          </th>
+          
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border text-center">
+            Status 
+          </th>
+          <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border text-center">
+            Action
+          </th>
+
+        </thead>
+        <tbody>
+          {orders.map((orders) => (
+            <tr>
+            <td class="border px-4 py-2 text-center">
+              <input type="checkbox" />
+            </td>
+            <td class="border px-4 py-2 text-center">
+              {orders.orderId}
+            </td>
+            <td class="border px-4 py-2 text-center">
+              <img src={orders.imageUrl} alt="" class="w-10 h-10 rounded-full" />
+            </td>
+            <td class="border px-4 py-2 text-center">
+              {orders.productID}
+            </td>
+            <td class="border px-4 py-2 text-center">
+              {orders.userName}
+            </td>
+            <td class="border px-4 py-2 text-center"> 
+              {orders.quantity}
+            </td>
+            <td class="border px-4 py-2 text-center">
+              {orders.price}
+            </td>
+            <td class="border px-4 py-2 text-center">
+              
+            </td>
+            <td class="border px-4 py-2 text-center">
+            <OrderStatus />
+            </td>
+          </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
     
   )

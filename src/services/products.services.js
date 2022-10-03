@@ -13,16 +13,16 @@ class productsDataService{
     getProducts = () => {
         return getDocs(productsCollection);
     }
-    updateProduct = (productId, updateProduct) => {
-       const productRef = doc(db, "products", productId);
+    updateProduct = (id, updateProduct) => {
+       const productRef = doc(db, "products", id);
          return updateDoc(productRef, updateProduct);
     }
-    deleteProduct = (productId) => {
-        const productRef = doc(db, "products", productId);
+    deleteProduct = (id) => {
+        const productRef = doc(db, "products", id);
         return deleteDoc(productRef);
     }
-    getProduct = (productId) => {
-        const productRef = doc(db, "products", productId);
+    getProduct = (id) => {
+        const productRef = doc(db, "products", id);
         return getDoc(productRef);
     }
 }

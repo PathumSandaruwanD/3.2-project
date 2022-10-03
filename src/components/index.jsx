@@ -15,6 +15,14 @@ export {default as SalesGrid} from './SalesGrid';
 export {default as DailySales} from './DailySales';
 export {default as LastTransactions} from './LastTransactions';
 export {default as EditProduct} from './EditProduct';
+export {default as Products} from './Products';
+export {default as ProductTable} from './ProductTable';
+export {default as AddEmployees} from './AddEmployees';
+export {default as EditForm} from './EditForm';
+export {default as EditModal} from './EditModal';
+export {default as EditEmployee} from './EditEmployee';
+export {default as OrderStatus} from './OrderStatus';
+export {default as EditEmp} from './EditEmp';
 //charts
 export {default as LineChart} from './LineChart';
 export {default as Pie} from './pieChart';

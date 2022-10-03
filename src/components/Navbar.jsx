@@ -80,7 +80,6 @@ const Navbar = () => {
             Rendering widgets based on the active menu
             if there is some problem in navbar widgets routing here is the place to fix it
           */}
-          {isClicked.cart && <Cart/>}
           {isClicked.chat && <Chat/>}
           {isClicked.notification && <Notification/>}
           {isClicked.profile && <Profile/>}

@@ -1,25 +1,26 @@
 import React ,{useEffect} from 'react';
-import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import { BrowserRouter, Route, Routes,Switch,Router} from 'react-router-dom';
 import { FiSettings } from 'react-icons/fi';
 import { TooltipComponent } from '@syncfusion/ej2-react-popups';
 
 //Charts of the components file has been removed for temporary
 
-import { Sidebar,Navbar,Footer,ThemeSettings,AddProduct,SalesGrid,EditProduct } from './components';
+import { EditEmp,EditForm,Sidebar,Navbar,Footer,ThemeSettings,AddProduct,SalesGrid,EditProduct,ProductTable,AddEmployees} from './components';
 
 //Import pages
-import{ColorPicker,Calender,Ecommrce,Editor,Employees,Inventory,Kanban,Orders,PriceBook,Users,Area,Bar,ColorMapping,FinancialChart,Line,Pyramid,Stacked, Sales}from './pages';
-
+import{ColorPicker,Calender,Ecommrce,Editor,Employees,Inventory,Kanban,Orders,PriceBook,Users,Area,Bar,ColorMapping,FinancialChart,Line,Pyramid,Stacked, Sales, Login,Signin}from './pages';
 //import state controllers and context provider
 import { useStateContext } from './context/ContextProvider';
-
-
 import './App.css'
 import Customers from './pages/Customers';
+import {PageLaoutRoutes} from './App';
+
+
 
 const App = () => {
   const{activeMenu}=useStateContext();
-
+  //hide sidebar and navbar when login page is active
+ 
   //css framework=> tailwindcss
 
   return (
@@ -58,19 +59,20 @@ const App = () => {
 
             {/*routing*/}
             <div>
-              
-              <Routes>
-                {/*Dashboard*/}
-                <Route path='/' element={< Ecommrce/>} />
-                <Route path='/Online%20Store' element={< Ecommrce/>} />
 
+             
+
+              <Routes>
+                
+              <Route path='/Signin' element={< Signin/>} />
+              <Route path='/' element={< Login/>} />
+               
+                <Route path='/Online%20Store' element={< Ecommrce/>} />
                 {/*Pages*/}
                 <Route path='/orders' element={< Orders/>} />
                 <Route path='/employees' element={< Employees/>} />
                 <Route path='/customers' element={< Customers/>} />
                 <Route path='/sales' element={< Sales/>} />
-                
-           
                 {/*Apps*/}
                 <Route path='/Calendar' element={< Calender/>}/>
                 <Route path='/Task%20Scheduler' element={< Kanban/>} />
@@ -78,23 +80,14 @@ const App = () => {
                 <Route path='/color-picker' element={< ColorPicker/>} />
                 <Route path='/price%20book' element={< PriceBook/>} />
                 <Route path='/inventory' element={< Inventory/>} />
-            
-
-                {/*Charts*/}
-                <Route path='/line' element={< Line/>} />
-                <Route path='/area' element={< Area/>} />
-                <Route path='/bar' element={< Bar/>} />
-                
-                <Route path='/financial' element={< FinancialChart/>} />
-                <Route path='/color-mapping' element={< ColorMapping/>} />
-                <Route path='/pyramid' element={< Pyramid/>} />
-                <Route path='/stacked' element={< Stacked/>} />
-                <Route path='/AddProduct' element={< AddProduct/>} />
+               
+               <Route path='/AddProduct' element={< AddProduct/>} />
                 <Route path='/EditProduct' element={< EditProduct/>} />
-                <Route path='/SalesGrid' element={< SalesGrid/>} />
-                
-
+                <Route path='/AddEmployees' element={< AddEmployees/>} />
+                <Route path='/EditForm' element={< EditForm/>} />
+                <Route path='/EditEmp' element={< EditEmp/>} />
               </Routes>
+                {/*create private route to hide navbar and sidebar in login page*/}
             </div>
             <Footer />
           </div>
